@@ -74,10 +74,7 @@ a{color:inherit}
 
 /* Barra superior fixa */
 .fixed-head{position:fixed;top:0;left:0;right:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,.18)}
-.timerbar{height:var(--tbar);background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;gap:8px;padding:0 10px;font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden}
-.timerbar .clk{font-size:12px;font-weight:500}
-.timerbar b{display:inline-block;min-width:2ch;background:#fff;color:var(--red);border-radius:5px;padding:0 5px;font-size:14px;font-variant-numeric:tabular-nums;text-align:center}
-.timerbar.ended .clk{display:none}
+.timerbar{height:var(--tbar);background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;gap:8px;padding:0 10px;font-size:14px;font-weight:700;letter-spacing:.3px;white-space:nowrap;overflow:hidden}
 .topbar{height:var(--bar);background:var(--teal);color:#fff}
 .topbar .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .brand{font-weight:700;font-size:16px;text-decoration:none;white-space:nowrap}
@@ -207,6 +204,15 @@ a{color:inherit}
 .up-card .btn{margin-top:14px;font-size:16px}
 .up-no{display:block;margin-top:12px;padding:10px 6px;min-height:44px;color:var(--gray);font-size:14px;font-weight:500;text-decoration:underline;text-underline-offset:3px;touch-action:manipulation}
 
+/* Garantia */
+.guarantee{max-width:720px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;background:#fff;border:2px solid #E1EAEB;border-radius:24px;padding:28px 22px;box-shadow:var(--shadow)}
+.guarantee h2{font-size:24px;color:var(--teal)}
+.guarantee p{margin-top:8px;color:var(--gray);font-size:16px}
+.seal{flex:0 0 auto;width:104px;height:104px;border-radius:50%;background:var(--yellow);border:4px dashed #fff;outline:3px solid var(--yellow);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1}
+.seal b{font-size:40px}
+.seal span{font-size:15px;font-weight:700}
+@media (min-width:768px){.guarantee{flex-direction:row;text-align:left;padding:32px}}
+
 /* FAQ */
 .faq{max-width:680px;margin:28px auto 0;display:grid;gap:10px}
 .faq details{background:#fff;border-radius:14px;box-shadow:0 4px 14px rgba(14,96,106,.08)}
@@ -262,9 +268,8 @@ a{color:inherit}
 <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1127338279854037&ev=PageView&noscript=1"></noscript>
 
 <header class="fixed-head">
-  <div class="timerbar" id="timerbar" role="timer" aria-live="off">
-    <span>⏰ Oferta por tempo limitado</span>
-    <span class="clk">termina em <b id="t-mm">15</b>:<b id="t-ss">00</b></span>
+  <div class="timerbar">
+    <span>Oferta por tempo limitado</span>
   </div>
   <div class="topbar">
     <div class="wrap">
@@ -426,6 +431,7 @@ a{color:inherit}
             <li>Chega no seu e-mail logo após a confirmação do pagamento</li>
           </ul>
           <a href="https://pay.cakto.com.br/5rxhvqy_1271943" class="btn btn-sec btn-block" data-checkout="nivel1" data-upsell>Quero o Nível 1</a>
+          <p class="hint">Pagamento único • Garantia de 7 dias</p>
           <p class="hint">Quer ir além das 50? A Completa tem mais 5 trilhas, plano e gabarito.</p>
         </div>
         <div class="plan plan--main">
@@ -447,12 +453,23 @@ a{color:inherit}
             <li>Chega no seu e-mail logo após a confirmação do pagamento</li>
           </ul>
           <a href="https://pay.cakto.com.br/3b5s4cb_1271868" class="btn btn-main btn-block" data-checkout="completa">Quero a Trilha completa</a>
+          <p class="hint">Pagamento único • Garantia de 7 dias</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- GARANTIA: aguardando confirmação -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="guarantee">
+        <div class="seal"><b>7</b><span>dias</span></div>
+        <div>
+          <h2>Garantia de 7 dias</h2>
+          <p>Você tem 7 dias para conhecer a Trilha. Se não fizer sentido para a sua rotina, é só pedir o reembolso dentro desse prazo e você recebe o valor de volta.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section class="sec">
     <div class="wrap">
@@ -464,7 +481,7 @@ a{color:inherit}
         <details><summary>Serve para mais de um filho?</summary><p>Sim, o material é digital: você pode imprimir de novo.</p></details>
         <details><summary>Como eu recebo?</summary><p>Por e-mail, logo após a confirmação do pagamento, em PDF.</p></details>
         <details><summary>O que preciso ter em casa?</summary><p>Impressora (ou gráfica) com papel A4, lápis, borracha e lápis de cor.</p></details>
-        <details><summary>Posso me arrepender da compra?</summary><p>Compra online tem direito de arrependimento em 7 dias, conforme o Código de Defesa do Consumidor.</p></details>
+        <details><summary>Posso me arrepender da compra?</summary><p>Sim. Você tem 7 dias de garantia, como prevê o Código de Defesa do Consumidor para compras online. Se não gostar, é só pedir o reembolso dentro desse prazo.</p></details>
       </div>
     </div>
   </section>
@@ -481,7 +498,6 @@ a{color:inherit}
 <footer class="footer">
   <div class="wrap">
     <p><b>Brinca Lume</b></p>
-    <p>Contato: CONTATO_AQUI</p>
     <nav><a href="privacidade.html">Política de Privacidade</a><a href="termos.html">Termos de Uso</a></nav>
     <p>© 2026 Brinca Lume</p>
   </div>
@@ -576,20 +592,6 @@ a{color:inherit}
     w.addEventListener('pageshow', function () { upClose(); });
   }
 
-  /* ---- Cronômetro: 15 min por visitante, não reinicia ao recarregar ---- */
-  var tb = d.getElementById('timerbar'), tm = d.getElementById('t-mm'), ts = d.getElementById('t-ss');
-  if (tb && tm && ts) {
-    var end = parseInt(ls('bl_timer_end'), 10);
-    if (!end || isNaN(end)) { end = Date.now() + 15 * 60 * 1000; ls('bl_timer_end', String(end)); }
-    var tiv = null;
-    var tick = function () {
-      var left = Math.max(0, end - Date.now()), t = Math.ceil(left / 1000);
-      tm.textContent = (t < 600 ? '0' : '') + Math.floor(t / 60);
-      ts.textContent = (t % 60 < 10 ? '0' : '') + (t % 60);
-      if (left <= 0) { tb.classList.add('ended'); if (tiv) clearInterval(tiv); }
-    };
-    tick(); tiv = setInterval(tick, 1000);
-  }
 
   /* ---- ViewContent quando #planos fica 50% visível (1x por sessão) ---- */
   var planos = d.getElementById('planos');
