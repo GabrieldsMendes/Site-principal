@@ -42,13 +42,13 @@ if(dbg){console.log('[fbq]','init','1127338279854037');console.log('[fbq]','trac
 @font-face{font-family:'Poppins';font-style:normal;font-weight:500;font-display:swap;src:url(assets/fonts/poppins-latin-500-normal.woff2) format('woff2')}
 @font-face{font-family:'Poppins';font-style:normal;font-weight:700;font-display:swap;src:url(assets/fonts/poppins-latin-700-normal.woff2) format('woff2')}
 :root{--teal:#0E606A;--teal-d:#0A4A52;--orange:#FF8A1F;--orange-d:#D96C06;--yellow:#FFD43B;--text:#1E1E1E;--gray:#595959;--bg:#F2F4F4;--white:#fff;
-  --r:18px;--shadow:0 8px 24px rgba(14,96,106,.12);--bar:56px}
+  --red:#D00000;--r:18px;--shadow:0 8px 24px rgba(14,96,106,.12);--bar:56px;--tbar:36px}
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:calc(var(--bar) + 8px)}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:calc(var(--bar) + var(--tbar) + 8px)}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{margin:0;padding-top:var(--bar);font-family:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color:var(--text);background:var(--white);line-height:1.55;overflow-x:hidden}
+body{margin:0;padding-top:calc(var(--bar) + var(--tbar));font-family:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color:var(--text);background:var(--white);line-height:1.55;overflow-x:hidden}
 body.has-banner{padding-bottom:var(--banner-h,90px)}
-body.lb-open{overflow:hidden}
+body.lb-open,body.modal-open{overflow:hidden}
 img{max-width:100%;height:auto;display:block}
 h1,h2,h3{line-height:1.15;margin:0;font-weight:700}
 p{margin:0}
@@ -73,7 +73,12 @@ a{color:inherit}
 .note{font-size:14px;color:var(--gray);text-align:center}
 
 /* Barra superior fixa */
-.topbar{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--bar);background:var(--teal);color:#fff;box-shadow:0 2px 10px rgba(0,0,0,.15)}
+.fixed-head{position:fixed;top:0;left:0;right:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,.18)}
+.timerbar{height:var(--tbar);background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;gap:8px;padding:0 10px;font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden}
+.timerbar .clk{font-size:12px;font-weight:500}
+.timerbar b{display:inline-block;min-width:2ch;background:#fff;color:var(--red);border-radius:5px;padding:0 5px;font-size:14px;font-variant-numeric:tabular-nums;text-align:center}
+.timerbar.ended .clk{display:none}
+.topbar{height:var(--bar);background:var(--teal);color:#fff}
 .topbar .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .brand{font-weight:700;font-size:16px;text-decoration:none;white-space:nowrap}
 .brand span{color:var(--yellow)}
@@ -149,17 +154,45 @@ a{color:inherit}
 .lb-x{position:absolute;top:8px;right:8px;width:48px;height:48px;border:0;border-radius:50%;background:#fff;color:var(--text);font-size:30px;line-height:1;cursor:pointer;touch-action:manipulation}
 .lb-cap{position:absolute;top:18px;left:16px;right:70px;color:#fff;font-weight:500;font-size:15px}
 
-/* Oferta */
-.offer{max-width:460px;margin:28px auto 0;background:#fff;border:3px solid var(--teal);border-radius:24px;padding:28px 22px;box-shadow:var(--shadow);text-align:center}
-.offer h3{font-size:20px;color:var(--teal)}
-.offer ul{list-style:none;padding:0;margin:18px 0 0;text-align:left;display:grid;gap:10px}
-.offer li{display:flex;gap:10px;font-size:16px}
-.offer li::before{content:"✓";color:var(--teal);font-weight:700}
-.price{margin-top:22px;font-size:52px;font-weight:700;color:var(--teal);line-height:1}
+/* Planos */
+.plans{display:grid;gap:22px;margin-top:30px;align-items:start}
+.plan{position:relative;background:#fff;border:2px solid #d9e2e3;border-radius:24px;padding:22px 20px 24px;box-shadow:var(--shadow);text-align:center}
+.plan--main{border:3px solid var(--teal);box-shadow:0 14px 34px rgba(14,96,106,.22)}
+.plan .tag{position:absolute;top:-15px;left:50%;transform:translateX(-50%);white-space:nowrap;background:var(--orange);color:#fff;border-radius:999px;padding:5px 16px;font-size:13px;font-weight:700;letter-spacing:.5px}
+.plan-img{width:100%;max-width:300px;margin:6px auto 0;border-radius:14px}
+.plan h3{font-size:20px;color:var(--teal);margin-top:14px}
+.plan .tagline{color:var(--gray);font-size:15px;margin-top:4px}
+.price{margin-top:14px;font-size:50px;font-weight:700;color:var(--teal);line-height:1}
 .price small{font-size:22px;vertical-align:top;margin-right:4px}
+.plan--alt .price{font-size:42px;color:var(--text)}
 .per-day{display:inline-block;margin-top:10px;background:var(--yellow);border-radius:999px;padding:4px 14px;font-size:14px;font-weight:500}
-.offer .btn{margin-top:20px}
-.offer .note{margin-top:10px}
+.plan .qty{margin-top:8px;font-size:14px;color:var(--gray);font-weight:500}
+.plan .recv{margin-top:18px;text-align:left;font-weight:700;font-size:15px}
+.plan ul{list-style:none;padding:0;margin:8px 0 0;text-align:left;display:grid;gap:9px}
+.plan li{display:flex;gap:10px;font-size:15px;line-height:1.45}
+.plan li .e{flex:0 0 22px;text-align:center}
+.plan .btn{margin-top:20px}
+.btn-sec{background:#fff;color:var(--teal);border:2px solid var(--teal)}
+.btn-sec:active{background:var(--teal);color:#fff}
+.plan .hint{margin-top:12px;font-size:13px;color:var(--gray)}
+
+/* Popup de upgrade (Nível 1 → Completa) */
+.up{position:fixed;inset:0;z-index:2147483600;background:rgba(10,20,22,.7);display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto}
+.up[hidden]{display:none}
+.up-card{position:relative;width:100%;max-width:420px;margin:auto;background:#fff;border:3px solid var(--teal);border-radius:24px;padding:22px 20px 18px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.35);animation:pop .2s ease-out}
+@keyframes pop{from{transform:scale(.95);opacity:0}to{transform:scale(1);opacity:1}}
+@media (prefers-reduced-motion:reduce){.up-card{animation:none}}
+.up-x{position:absolute;top:6px;right:6px;width:44px;height:44px;border:0;background:none;font-size:28px;line-height:1;color:var(--gray);cursor:pointer;touch-action:manipulation}
+.up-kicker{color:var(--orange);font-weight:700;font-size:15px}
+.up-card h3{font-size:21px;margin-top:4px}
+.up-card h3 span{color:var(--teal)}
+.up-img{width:100%;max-width:220px;margin:10px auto 0;border-radius:12px}
+.up-card ul{list-style:none;padding:0;margin:12px auto 0;max-width:300px;text-align:left;display:grid;gap:6px;font-size:15px}
+.up-card li::before{content:"✓ ";color:var(--teal);font-weight:700}
+.up-price{margin-top:12px;font-size:16px}
+.up-price b{font-size:24px;color:var(--teal)}
+.up-card .btn{margin-top:14px;font-size:16px}
+.up-no{display:block;margin-top:12px;padding:10px 6px;min-height:44px;color:var(--gray);font-size:14px;font-weight:500;text-decoration:underline;text-underline-offset:3px;touch-action:manipulation}
 
 /* FAQ */
 .faq{max-width:680px;margin:28px auto 0;display:grid;gap:10px}
@@ -200,6 +233,9 @@ a{color:inherit}
   .steps{grid-template-columns:repeat(3,1fr)}
   .step{flex-direction:column}
   .levels{grid-template-columns:1fr 1fr}
+  .plans{grid-template-columns:1.15fr 1fr;gap:28px;max-width:940px;margin-left:auto;margin-right:auto}
+  .plan--alt{margin-top:40px}
+  .plan{padding:28px 28px 30px}
   .gallery{display:grid;grid-template-columns:repeat(5,1fr);overflow:visible;margin:28px 0 0;padding:0}
   .gallery li{flex:none}
   .swipe{display:none}
@@ -210,10 +246,16 @@ a{color:inherit}
 <body>
 <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1127338279854037&ev=PageView&noscript=1"></noscript>
 
-<header class="topbar">
-  <div class="wrap">
-    <a href="#topo" class="brand">Trilha dos <span>15 Minutos</span></a>
-    <a href="#planos" class="btn btn-main">Quero a Trilha</a>
+<header class="fixed-head">
+  <div class="timerbar" id="timerbar" role="timer" aria-live="off">
+    <span>⏰ Oferta por tempo limitado</span>
+    <span class="clk">termina em <b id="t-mm">15</b>:<b id="t-ss">00</b></span>
+  </div>
+  <div class="topbar">
+    <div class="wrap">
+      <a href="#topo" class="brand">Trilha dos <span>15 Minutos</span></a>
+      <a href="#planos" class="btn btn-main">Quero a Trilha</a>
+    </div>
   </div>
 </header>
 
@@ -339,20 +381,45 @@ a{color:inherit}
 
   <section class="sec bg-soft" id="planos">
     <div class="wrap">
-      <h2 class="h2">O que você recebe</h2>
-      <div class="offer">
-        <h3>Trilha dos 15 Minutos — Completa (100 dias)</h3>
-        <ul>
-          <li>100 atividades em 10 trilhas</li>
-          <li>Plano de 100 dias (1 página por dia)</li>
-          <li>Gabarito</li>
-          <li>Certificado</li>
-          <li>Acesso por e-mail</li>
-        </ul>
-        <p class="price"><small>R$</small>27</p>
-        <p class="per-day">menos de R$ 0,30 por dia de atividade</p>
-        <a href="https://pay.cakto.com.br/3b5s4cb_1271868" class="btn btn-main btn-block" data-checkout>Quero começar a Trilha</a>
-        <p class="note">Pagamento único • PDF para imprimir em A4</p>
+      <h2 class="h2">Escolha sua Trilha</h2>
+      <div class="plans">
+        <div class="plan plan--main">
+          <span class="tag">MAIS ESCOLHIDO</span>
+          <picture><source type="image/webp" srcset="assets/produto-trilha-completa.webp"><img class="plan-img" src="assets/produto-trilha-completa.jpg" width="720" height="720" loading="lazy" alt="Trilha dos 15 Minutos Completa: kit digital para imprimir com 100 atividades em 10 trilhas"></picture>
+          <h3>Trilha dos 15 Minutos — Completa</h3>
+          <p class="tagline">100 dias de atividades, na ordem certa</p>
+          <p class="price"><small>R$</small>27</p>
+          <p class="per-day">menos de R$ 0,30 por dia de atividade</p>
+          <p class="recv">O que você recebe:</p>
+          <ul>
+            <li><span class="e">✏️</span>100 atividades em 10 trilhas (Nível 1 e Nível 2)</li>
+            <li><span class="e">📅</span>Plano de 100 dias: 1 página por dia, cerca de 15 minutos</li>
+            <li><span class="e">🗺️</span>Mapa das trilhas para acompanhar o caminho</li>
+            <li><span class="e">✅</span>Gabarito de todas as atividades</li>
+            <li><span class="e">🏅</span>Certificado ao concluir a Trilha</li>
+            <li><span class="e">🖨️</span>PDF para imprimir em A4. Só lápis, borracha e lápis de cor</li>
+            <li><span class="e">📧</span>Chega no seu e-mail logo após a confirmação do pagamento</li>
+          </ul>
+          <a href="https://pay.cakto.com.br/3b5s4cb_1271868" class="btn btn-main btn-block" data-checkout="completa">Quero a Trilha completa</a>
+        </div>
+        <div class="plan plan--alt">
+          <picture><source type="image/webp" srcset="assets/produto-trilha-nivel-1.webp"><img class="plan-img" src="assets/produto-trilha-nivel-1.jpg" width="720" height="720" loading="lazy" alt="Trilha dos 15 Minutos Nível 1: kit digital para imprimir com 50 atividades em 5 trilhas"></picture>
+          <h3>Trilha dos 15 Minutos — Nível 1</h3>
+          <p class="tagline">Os primeiros passos, na ordem certa</p>
+          <p class="price"><small>R$</small>12</p>
+          <p class="qty">50 atividades</p>
+          <p class="recv">O que você recebe:</p>
+          <ul>
+            <li><span class="e">✏️</span>50 atividades em 5 trilhas: letras e vogais, sílabas e palavras, números e contagem, coordenação motora, atenção e lógica</li>
+            <li><span class="e">📅</span>1 página por dia, cerca de 15 minutos</li>
+            <li><span class="e">🗺️</span>Mapa das 5 trilhas</li>
+            <li><span class="e">🏅</span>Certificado ao concluir</li>
+            <li><span class="e">🖨️</span>PDF para imprimir em A4. Só lápis e papel</li>
+            <li><span class="e">📧</span>Chega no seu e-mail logo após a confirmação do pagamento</li>
+          </ul>
+          <a href="https://pay.cakto.com.br/5rxhvqy_1271943" class="btn btn-sec btn-block" data-checkout="nivel1" data-upsell>Quero o Nível 1</a>
+          <p class="hint">Quer ir além das 50? A Completa tem mais 5 trilhas, plano e gabarito.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -376,7 +443,7 @@ a{color:inherit}
   <section class="sec final">
     <div class="wrap">
       <h2>Não falta atividade. <em>Falta ordem.</em></h2>
-      <div class="cta"><a href="https://pay.cakto.com.br/3b5s4cb_1271868" class="btn btn-main" data-checkout>Quero começar a Trilha</a></div>
+      <div class="cta"><a href="https://pay.cakto.com.br/3b5s4cb_1271868" class="btn btn-main" data-checkout="completa">Quero começar a Trilha</a></div>
       <p class="mech">R$ 27 • 100 atividades • 10 trilhas • 1 página por dia</p>
     </div>
   </section>
@@ -395,6 +462,23 @@ a{color:inherit}
   <p class="lb-cap" id="lb-cap"></p>
   <button type="button" class="lb-x" id="lb-x" aria-label="Fechar">×</button>
   <picture><source type="image/webp" id="lb-src"><img id="lb-img" alt=""></picture>
+</div>
+
+<div class="up" id="up" role="dialog" aria-modal="true" aria-labelledby="up-title" hidden>
+  <div class="up-card">
+    <button type="button" class="up-x" id="up-x" aria-label="Fechar">×</button>
+    <p class="up-kicker">⚡ Espera! Oferta especial</p>
+    <h3 id="up-title">Por mais <span>R$ 15</span> você leva a <span>Trilha Completa</span></h3>
+    <picture><source type="image/webp" srcset="assets/produto-trilha-completa.webp"><img class="up-img" src="assets/produto-trilha-completa.jpg" width="720" height="720" loading="lazy" alt="Trilha dos 15 Minutos Completa com 100 atividades"></picture>
+    <ul>
+      <li>100 atividades em vez de 50</li>
+      <li>Mais 5 trilhas (Nível 2)</li>
+      <li>Plano de 100 dias e gabarito</li>
+    </ul>
+    <p class="up-price">De R$ 12 por <b>R$ 27</b></p>
+    <a href="https://pay.cakto.com.br/3b5s4cb_1271868" class="btn btn-main btn-block" data-checkout="completa" id="up-yes">Sim, quero a Trilha completa</a>
+    <a href="https://pay.cakto.com.br/5rxhvqy_1271943" class="up-no" data-checkout="nivel1">Não, quero continuar com o Nível 1 (R$ 12)</a>
+  </div>
 </div>
 
 <div class="cookie" id="cookie" role="region" aria-label="Aviso de cookies" hidden>
@@ -438,10 +522,45 @@ a{color:inherit}
     if (!add.length) return href + hash;
     return href + (j > -1 ? '&' : '?') + add.join('&') + hash;
   }
+  var PLANS = { completa: { content_name: 'Trilha dos 15 Minutos - Completa', value: 27, currency: 'BRL' },
+                nivel1: { content_name: 'Trilha dos 15 Minutos - Nivel 1', value: 12, currency: 'BRL' } };
   [].forEach.call(d.querySelectorAll('a[data-checkout]'), function (a) {
     a.href = withQs(a.getAttribute('href'));
-    a.addEventListener('click', function () { track('trackCustom', 'ClickComprar', { content_name: 'Trilha dos 15 Minutos', value: 27, currency: 'BRL' }); });
+    if (a.hasAttribute('data-upsell')) return; // abre o popup; o evento sai no botão escolhido
+    a.addEventListener('click', function () { track('trackCustom', 'ClickComprar', PLANS[a.getAttribute('data-checkout')] || PLANS.completa); });
   });
+
+  /* ---- Popup de upgrade ao escolher o Nível 1 ---- */
+  var up = d.getElementById('up'), upX = d.getElementById('up-x'), upYes = d.getElementById('up-yes'), upFrom = null;
+  function upOpen(from) { upFrom = from; up.hidden = false; d.body.classList.add('modal-open'); try { upYes.focus({ preventScroll: true }); } catch (e) {} }
+  function upClose() { if (up.hidden) return; up.hidden = true; d.body.classList.remove('modal-open'); if (upFrom) try { upFrom.focus({ preventScroll: true }); } catch (e) {} }
+  if (up) {
+    [].forEach.call(d.querySelectorAll('a[data-upsell]'), function (a) {
+      a.addEventListener('click', function (e) {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button > 0) return;
+        e.preventDefault(); upOpen(a);
+      });
+    });
+    upX.addEventListener('click', upClose);
+    up.addEventListener('click', function (e) { if (e.target === up) upClose(); });
+    d.addEventListener('keydown', function (e) { if (e.key === 'Escape') upClose(); });
+    w.addEventListener('pageshow', function () { upClose(); });
+  }
+
+  /* ---- Cronômetro: 15 min por visitante, não reinicia ao recarregar ---- */
+  var tb = d.getElementById('timerbar'), tm = d.getElementById('t-mm'), ts = d.getElementById('t-ss');
+  if (tb && tm && ts) {
+    var end = parseInt(ls('bl_timer_end'), 10);
+    if (!end || isNaN(end)) { end = Date.now() + 15 * 60 * 1000; ls('bl_timer_end', String(end)); }
+    var tiv = null;
+    var tick = function () {
+      var left = Math.max(0, end - Date.now()), t = Math.ceil(left / 1000);
+      tm.textContent = (t < 600 ? '0' : '') + Math.floor(t / 60);
+      ts.textContent = (t % 60 < 10 ? '0' : '') + (t % 60);
+      if (left <= 0) { tb.classList.add('ended'); if (tiv) clearInterval(tiv); }
+    };
+    tick(); tiv = setInterval(tick, 1000);
+  }
 
   /* ---- ViewContent quando #planos fica 50% visível (1x por sessão) ---- */
   var planos = d.getElementById('planos');
