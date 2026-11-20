@@ -113,6 +113,19 @@ a{color:inherit}
 .hblock__list li{display:flex;gap:12px;align-items:flex-start;background:#fff;color:var(--text);border:1px solid #E1EAEB;border-radius:14px;padding:14px 16px;font-size:16px;box-shadow:var(--shadow)}
 .hblock__list li::before{content:"✓";flex:0 0 26px;height:26px;border-radius:50%;background:var(--yellow);color:var(--text);font-weight:700;display:flex;align-items:center;justify-content:center;font-size:14px;margin-top:1px}
 
+/* Oferta no topo */
+.hero-offer{position:relative;max-width:440px;margin:22px auto 0;background:#fff;border:2px solid var(--orange);border-radius:20px;padding:16px 14px 12px;box-shadow:0 12px 30px rgba(255,138,31,.18);display:grid;grid-template-columns:104px 1fr;gap:12px;align-items:center;text-align:left}
+.ho-tag{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--orange);color:#fff;font-size:11px;font-weight:700;letter-spacing:.5px;border-radius:999px;padding:3px 12px;white-space:nowrap}
+.ho-img{width:104px;height:104px;border-radius:12px}
+.ho-name{font-weight:700;font-size:15px;line-height:1.3;color:var(--teal)}
+.ho-sub{font-size:12.5px;color:var(--gray);margin-top:2px}
+.ho-price{margin-top:4px;line-height:1}
+.ho-price s{font-size:15px;color:var(--gray);text-decoration-color:var(--red);text-decoration-thickness:2px}
+.ho-price b{font-size:30px;color:var(--teal);margin-left:4px}
+.hero-offer .ho-btn{grid-column:1 / -1;margin-top:2px}
+.ho-foot{grid-column:1 / -1;text-align:center;font-size:12.5px;color:var(--gray)}
+.ho-foot a{color:var(--teal);font-weight:500;display:inline-block;padding:4px 0}
+
 /* Bloco de dor */
 .pains-title{margin-bottom:20px}
 .pains{list-style:none;padding:0;margin:0 auto;max-width:900px;display:grid;gap:12px}
@@ -216,6 +229,8 @@ a{color:inherit}
 .up-card li::before{content:"✓ ";color:var(--teal);font-weight:700}
 .up-price{margin-top:12px;font-size:16px}
 .up-price b{font-size:24px;color:var(--teal)}
+.up-price s{color:var(--gray);text-decoration-color:var(--red);text-decoration-thickness:2px}
+.up-price small{display:block;font-size:13px;color:var(--gray);margin-top:2px}
 .up-card .btn{margin-top:14px;font-size:16px}
 .up-no{display:block;margin-top:12px;padding:10px 6px;min-height:44px;color:var(--gray);font-size:14px;font-weight:500;text-decoration:underline;text-underline-offset:3px;touch-action:manipulation}
 
@@ -255,6 +270,15 @@ a{color:inherit}
 .cookie a{color:var(--teal);font-weight:700}
 .cookie button{flex:0 0 auto;min-height:44px;padding:8px 18px;border:0;border-radius:999px;background:var(--teal);color:#fff;font:inherit;font-weight:700;cursor:pointer;touch-action:manipulation}
 
+@media (max-width:380px){
+  .hero{padding-top:18px}
+  .eyebrow{font-size:12px;padding:5px 12px}
+  .hero h1{margin-top:12px}
+  .hero .sub{font-size:15px;margin-top:10px;line-height:1.5}
+  .hero-offer{margin-top:18px;grid-template-columns:84px 1fr;padding:14px 12px 10px;gap:10px}
+  .ho-img{width:84px;height:84px}
+  .ho-price b{font-size:26px}
+}
 @media (min-width:768px){
   .sec{padding:72px 0}
   .h2{font-size:34px}
@@ -305,8 +329,16 @@ a{color:inherit}
         <p class="eyebrow">Para pais e professoras de crianças de 4 a 6 anos</p>
         <h1>Você imprime <em>atividade solta</em> toda semana e, no fim, não sabe se está ajudando ou <em>só ocupando a criança</em>?</h1>
         <p class="sub">Folha aqui, apostila ali, 40 minutos procurando no Google e nada vira rotina. A Trilha dos 15 Minutos acaba com isso: 100 atividades já em ordem, 1 página por dia.</p>
-        <div class="cta">
-          <a href="#planos" class="btn btn-main">Quero parar de improvisar</a>
+        <div class="hero-offer">
+          <span class="ho-tag">MAIS VENDIDO</span>
+          <picture><source type="image/webp" srcset="assets/produto-trilha-completa-sm.webp"><img class="ho-img" src="assets/produto-trilha-completa-sm.jpg" width="280" height="280" alt="Trilha dos 15 Minutos Completa: kit digital com 100 atividades em 10 trilhas"></picture>
+          <div class="ho-info">
+            <p class="ho-name">Trilha dos 15 Minutos — Completa</p>
+            <p class="ho-sub">100 atividades • 10 trilhas • PDF A4</p>
+            <p class="ho-price"><s>R$ 47</s> <b>R$ 27</b></p>
+          </div>
+          <a href="https://pay.cakto.com.br/3b5s4cb_1271868" class="btn btn-main btn-block ho-btn" data-checkout="completa">Quero parar de improvisar</a>
+          <p class="ho-foot">Pagamento único • Garantia de 7 dias • <a href="#planos">ver os planos</a></p>
         </div>
         <p class="mech">100 atividades • 10 trilhas • 1 página por dia • só lápis e papel</p>
         <div class="fan" aria-label="Páginas reais da Trilha dos 15 Minutos">
@@ -557,15 +589,15 @@ a{color:inherit}
   <div class="up-card">
     <button type="button" class="up-x" id="up-x" aria-label="Fechar">×</button>
     <p class="up-kicker">⚡ Espera! Oferta especial</p>
-    <h3 id="up-title">Por mais <span>R$ 15</span> você leva a <span>Trilha Completa</span></h3>
+    <h3 id="up-title">Leve a <span>Trilha Completa</span> por só <span>R$ 20</span></h3>
     <picture><source type="image/webp" srcset="assets/produto-trilha-completa.webp"><img class="up-img" src="assets/produto-trilha-completa.jpg" width="720" height="720" loading="lazy" alt="Trilha dos 15 Minutos Completa com 100 atividades"></picture>
     <ul>
       <li>100 atividades em vez de 50</li>
       <li>Mais 5 trilhas (Nível 2)</li>
       <li>Plano de 100 dias e gabarito</li>
     </ul>
-    <p class="up-price">De R$ 12 por <b>R$ 27</b></p>
-    <a href="https://pay.cakto.com.br/3b5s4cb_1271868" class="btn btn-main btn-block" data-checkout="completa" id="up-yes">Sim, quero a Trilha completa</a>
+    <p class="up-price">De <s>R$ 27</s> por <b>R$ 20</b> <small>só R$ 8 a mais que o Nível 1</small></p>
+    <a href="https://pay.cakto.com.br/achmus5" class="btn btn-main btn-block" data-checkout="completa20" id="up-yes">Sim, quero a Trilha completa por R$ 20</a>
     <a href="https://pay.cakto.com.br/5rxhvqy_1271943" class="up-no" data-checkout="nivel1">Não, quero continuar com o Nível 1 (R$ 12)</a>
   </div>
 </div>
@@ -612,7 +644,8 @@ a{color:inherit}
     return href + (j > -1 ? '&' : '?') + add.join('&') + hash;
   }
   var PLANS = { completa: { plano: 'completa', value: 27, currency: 'BRL' },
-                nivel1: { plano: 'nivel1', value: 12, currency: 'BRL' } };
+                nivel1: { plano: 'nivel1', value: 12, currency: 'BRL' },
+                completa20: { plano: 'completa_oferta20', value: 20, currency: 'BRL' } };
   [].forEach.call(d.querySelectorAll('a[data-checkout]'), function (a) {
     a.href = withQs(a.getAttribute('href'));
     if (a.hasAttribute('data-upsell')) return; // abre o popup; o evento sai no botão escolhido
