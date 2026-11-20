@@ -164,6 +164,16 @@ a{color:inherit}
 .lb-x{position:absolute;top:8px;right:8px;width:48px;height:48px;border:0;border-radius:50%;background:#fff;color:var(--text);font-size:30px;line-height:1;cursor:pointer;touch-action:manipulation}
 .lb-cap{position:absolute;top:18px;left:16px;right:70px;color:#fff;font-weight:500;font-size:15px}
 
+/* Depoimentos */
+.bg-tint{background:#E8F2F3}
+.testis{display:grid;gap:16px;margin-top:28px}
+.testi{margin:0;background:#fff;border-radius:var(--r);padding:22px 20px;box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:space-between;gap:16px}
+.testi blockquote{margin:0;font-size:16px;line-height:1.6;color:var(--text)}
+.testi figcaption{display:flex;flex-direction:column;border-top:1px solid #E1EAEB;padding-top:12px}
+.testi figcaption b{color:var(--teal)}
+.testi figcaption span{font-size:14px;color:var(--gray)}
+.dep-note{margin-top:16px}
+
 /* Planos */
 .plans{display:grid;gap:22px;margin-top:30px;align-items:start}
 .plan{position:relative;background:#fff;border:2px solid #d9e2e3;border-radius:24px;padding:22px 20px 24px;box-shadow:var(--shadow);text-align:center}
@@ -258,6 +268,7 @@ a{color:inherit}
   .steps{grid-template-columns:repeat(3,1fr)}
   .step{flex-direction:column}
   .levels{grid-template-columns:1fr 1fr}
+  .testis{grid-template-columns:repeat(3,1fr);align-items:stretch}
   .plans{grid-template-columns:1fr 1.15fr;gap:28px;max-width:940px;margin-left:auto;margin-right:auto}
   .plan--alt{margin-top:40px}
   .plan{padding:28px 28px 30px}
@@ -417,6 +428,27 @@ a{color:inherit}
         <a href="amostra-trilha-dos-15-minutos.pdf" download class="btn btn-ghost" id="dl-amostra">Baixar amostra grátis (PDF)</a>
         <p class="note">10 atividades reais, uma de cada trilha. Imprima e faça com a criança.</p>
       </div>
+    </div>
+  </section>
+
+  <section class="sec bg-tint" aria-labelledby="dep-title">
+    <div class="wrap">
+      <h2 class="h2" id="dep-title">O que as mães estão dizendo</h2>
+      <div class="testis">
+        <figure class="testi">
+          <blockquote>“Comprei essa trilha (…) e acabei me emocionando, pois ele conseguiu sozinho e se divertindo.”</blockquote>
+          <figcaption><b>Isabela O.</b><span>Mãe de criança de 5 anos</span></figcaption>
+        </figure>
+        <figure class="testi">
+          <blockquote>“Eu queria algo que iria ajudar minha filha a gostar mais de atividades e não ter briga em casa na hora de fazer. Havia muitos problemas quando eu falava em lição de casa e sempre era uma confusão. Quando mostrei esse kit de atividades ela se interessou e no primeiro dia começamos a fazer e ela simplesmente se divertiu muito. (…) Ela fica muito animada na hora de fazer as atividades do kit, tudo isso sem eu precisar ficar cobrando, mas agora, nos divertindo!”</blockquote>
+          <figcaption><b>Renata P.</b><span>Mãe de criança de 6 anos</span></figcaption>
+        </figure>
+        <figure class="testi">
+          <blockquote>“Fui atrás de atividades (…), achei essa e adquiri a trilha completa. (…) Fiquei muito feliz e, como recompensa, recortei uma medalha (…) e dei a ele, que ficou muito animado.”</blockquote>
+          <figcaption><b>Marcela C.</b><span>Mãe de criança de 4 anos</span></figcaption>
+        </figure>
+      </div>
+      <p class="note dep-note">Depoimentos enviados por clientes e publicados com autorização.</p>
     </div>
   </section>
 
