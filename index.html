@@ -166,8 +166,9 @@ a{color:inherit}
 
 /* Depoimentos */
 .bg-tint{background:#E8F2F3}
-.testis{display:grid;gap:16px;margin-top:28px}
-.testi{margin:0;background:#fff;border-radius:var(--r);padding:22px 20px;box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:space-between;gap:16px}
+.testis{display:flex;flex-direction:column;gap:14px;max-width:720px;margin:28px auto 0}
+.testi{margin:0;background:#fff;border-radius:var(--r);padding:20px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:12px}
+.testi .stars{color:#F5A400;font-size:20px;letter-spacing:2px;line-height:1}
 .testi blockquote{margin:0;font-size:16px;line-height:1.6;color:var(--text)}
 .testi figcaption{display:flex;flex-direction:column;border-top:1px solid #E1EAEB;padding-top:12px}
 .testi figcaption b{color:var(--teal)}
@@ -268,7 +269,6 @@ a{color:inherit}
   .steps{grid-template-columns:repeat(3,1fr)}
   .step{flex-direction:column}
   .levels{grid-template-columns:1fr 1fr}
-  .testis{grid-template-columns:repeat(3,1fr);align-items:stretch}
   .plans{grid-template-columns:1fr 1.15fr;gap:28px;max-width:940px;margin-left:auto;margin-right:auto}
   .plan--alt{margin-top:40px}
   .plan{padding:28px 28px 30px}
@@ -436,15 +436,18 @@ a{color:inherit}
       <h2 class="h2" id="dep-title">O que as mães estão dizendo</h2>
       <div class="testis">
         <figure class="testi">
-          <blockquote>“Comprei essa trilha (…) e acabei me emocionando, pois ele conseguiu sozinho e se divertindo.”</blockquote>
+          <p class="stars" aria-label="5 estrelas">★★★★★</p>
+          <blockquote>“Meu filho de 5 anos estava com dificuldades de coordenação motora com o lápis e eu não sabia mais o que fazer. Comprei essa trilha para ver se ele iria melhorar e, depois de um tempo, a evolução que ele teve foi incrível e acabei me emocionando, pois ele conseguiu sozinho e se divertindo.”</blockquote>
           <figcaption><b>Isabela O.</b><span>Mãe de criança de 5 anos</span></figcaption>
         </figure>
         <figure class="testi">
-          <blockquote>“Eu queria algo que iria ajudar minha filha a gostar mais de atividades e não ter briga em casa na hora de fazer. Havia muitos problemas quando eu falava em lição de casa e sempre era uma confusão. Quando mostrei esse kit de atividades ela se interessou e no primeiro dia começamos a fazer e ela simplesmente se divertiu muito. (…) Ela fica muito animada na hora de fazer as atividades do kit, tudo isso sem eu precisar ficar cobrando, mas agora, nos divertindo!”</blockquote>
+          <p class="stars" aria-label="5 estrelas">★★★★★</p>
+          <blockquote>“Eu queria algo que iria ajudar minha filha a gostar mais de atividades e não ter briga em casa na hora de fazer. Havia muitos problemas quando eu falava em lição de casa e sempre era uma confusão. Quando mostrei esse kit de atividades ela se interessou e no primeiro dia começamos a fazer e ela simplesmente se divertiu muito. Agora, depois de um tempo, ela fica muito animada na hora de fazer as atividades do kit e as lições de casa, tudo isso sem eu precisar ficar cobrando, mas agora, nos divertindo!”</blockquote>
           <figcaption><b>Renata P.</b><span>Mãe de criança de 6 anos</span></figcaption>
         </figure>
         <figure class="testi">
-          <blockquote>“Fui atrás de atividades (…), achei essa e adquiri a trilha completa. (…) Fiquei muito feliz e, como recompensa, recortei uma medalha (…) e dei a ele, que ficou muito animado.”</blockquote>
+          <p class="stars" aria-label="5 estrelas">★★★★★</p>
+          <blockquote>“A professora da escola me disse que meu filho confundia muito os números e acabava tendo dificuldade em contar. Fui atrás de atividades que poderiam o ajudar, achei essa e adquiri a trilha completa. Depois de um tempo fazendo as atividades com meu filho, ele conseguiu contar corretamente a quantidade de lápis que estávamos utilizando na hora. Fiquei muito feliz e, como recompensa, recortei uma medalha do planner que comprei junto e dei a ele, que ficou muito animado.”</blockquote>
           <figcaption><b>Marcela C.</b><span>Mãe de criança de 4 anos</span></figcaption>
         </figure>
       </div>
