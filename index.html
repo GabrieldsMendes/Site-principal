@@ -20,6 +20,8 @@ w.blFbq=function(){try{if(dbg)console.log.apply(console,['[fbq]'].concat([].slic
 if(dbg){console.log('[fbq]','init','1127338279854037');console.log('[fbq]','track','PageView');}})(window);
 </script>
 <!-- End Meta Pixel Code -->
+<!-- UTMify: repassa as UTMs para os links do checkout (mesmo script enviado pela UTMify, em versão legível) -->
+<script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck data-utmify-prevent-subids async defer></script>
 <title>Trilha dos 15 Minutos — 1 página por dia, na ordem certa</title>
 <meta name="description" content="100 atividades em 10 trilhas para crianças de 4 a 6 anos. 1 página por dia, 15 minutos, só lápis e papel.">
 <meta name="author" content="Brinca Lume">
@@ -646,10 +648,23 @@ a{color:inherit}
   var PLANS = { completa: { plano: 'completa', value: 27, currency: 'BRL' },
                 nivel1: { plano: 'nivel1', value: 12, currency: 'BRL' },
                 completa20: { plano: 'completa_oferta20', value: 20, currency: 'BRL' } };
+  function dedupe(href) {
+    var h = '', i = href.indexOf('#');
+    if (i > -1) { h = href.slice(i); href = href.slice(0, i); }
+    var j = href.indexOf('?');
+    if (j < 0) return href + h;
+    var seen = {}, keep = href.slice(j + 1).split('&').filter(function (p) {
+      var k = p.split('=')[0]; if (!p || seen[k]) return false; seen[k] = 1; return true;
+    });
+    return href.slice(0, j) + (keep.length ? '?' + keep.join('&') : '') + h;
+  }
   [].forEach.call(d.querySelectorAll('a[data-checkout]'), function (a) {
     a.href = withQs(a.getAttribute('href'));
     if (a.hasAttribute('data-upsell')) return; // abre o popup; o evento sai no botão escolhido
-    a.addEventListener('click', function () { track('trackCustom', 'ClickComprar', PLANS[a.getAttribute('data-checkout')] || PLANS.completa); });
+    a.addEventListener('click', function () {
+      a.href = dedupe(a.href); // evita parâmetro repetido se a UTMify também mexer no link
+      track('trackCustom', 'ClickComprar', PLANS[a.getAttribute('data-checkout')] || PLANS.completa);
+    });
   });
 
   /* ---- Cronômetro: 15 min por visitante, não reinicia ao recarregar ---- */
