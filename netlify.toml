@@ -12,9 +12,3 @@
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=2592000"
-
-[[headers]]
-  for = "/amostra-trilha-dos-15-minutos.pdf"
-  [headers.values]
-    Content-Disposition = "attachment; filename=\"Amostra - Trilha dos 15 Minutos.pdf\""
-    Cache-Control = "public, max-age=86400"
